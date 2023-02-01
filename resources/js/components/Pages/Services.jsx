@@ -1,54 +1,176 @@
+import slider1 from "../../../img/slider1.jpg";
 function Services() {
     return (
-        <div id={"services"} className="categories-area section-padding30">
+        <div className="team-area testimonial-area testimonial-padding section-bg">
             <div className="container">
-                <div className="row">
-                    <div className="col-lg-12">
-                        <div className="section-tittle text-center mb-80">
-                            <span>Бидний үйлчилгээ</span>
-                            <h2>Бид таны төлөө юу хийж чадах вэ</h2>
-                        </div>
+                <div className="w-full">
+                    <div className="section-tittle text-center mb-80">
+                        <span>Бидний үйлчилгээ</span>
+                        <h2>Меню</h2>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-lg-4 col-md-6 col-sm-6">
-                        <div className="single-cat text-center mb-50">
-                            <div className="cat-icon">
-                                <span className="flaticon-shipped"></span>
+                <div className="row justify-content-between">
+                    <div className="col-xl-12 col-lg-12">
+                        <div className="h1-testimonial-active mb-70">
+                            <div className="single-testimonial ">
+                                <div className="testimonial-caption ">
+                                    <div className="testimonial-top-cap">
+                                        <div className="single-team mb-30 text-center">
+                                            <div className="team-img">
+                                                <img src={slider1} alt="" />
+                                                <div className="team-caption">
+                                                    <h3>
+                                                        <a>Газрын тээвэр</a>
+                                                    </h3>
+                                                    <div className="team-social">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-facebook-f"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-twitter"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fas fa-globe"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-instagram"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="cat-cap">
-                                <h5>
-                                    <a href="services.html">Газрын тээвэр</a>
-                                </h5>
-                                <p>Тайлбар</p>
+                            <div className="single-testimonial ">
+                                <div className="testimonial-caption ">
+                                    <div className="testimonial-top-cap">
+                                        <div className="single-team mb-30 text-center">
+                                            <div className="team-img">
+                                                <img src={slider1} alt="" />
+                                                <div className="team-caption">
+                                                    <h3>
+                                                        <a>Усан тээвэр</a>
+                                                    </h3>
+                                                    <div className="team-social">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-facebook-f"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-twitter"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fas fa-globe"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-instagram"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-6">
-                        <div className="single-cat text-center mb-50">
-                            <div className="cat-icon">
-                                <span className="flaticon-ship"></span>
+                            <div className="single-testimonial ">
+                                <div className="testimonial-caption ">
+                                    <div className="testimonial-top-cap">
+                                        <div className="single-team mb-30 text-center">
+                                            <div className="team-img">
+                                                <img src={slider1} alt="" />
+                                                <div className="team-caption">
+                                                    <h3>
+                                                        <a>Агаарын тээвэр</a>
+                                                    </h3>
+                                                    <div className="team-social">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-facebook-f"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-twitter"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fas fa-globe"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-instagram"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="cat-cap">
-                                <h5>
-                                    <a href="services.html">
-                                        Усан онгоцны тээвэр
-                                    </a>
-                                </h5>
-                                <p>Тайлбар</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-6">
-                        <div className="single-cat text-center mb-50">
-                            <div className="cat-icon">
-                                <span className="flaticon-plane"></span>
-                            </div>
-                            <div className="cat-cap">
-                                <h5>
-                                    <a href="services.html">Агаарын тээвэр</a>
-                                </h5>
-                                <p>Тайлбар</p>
+                            <div className="single-testimonial ">
+                                <div className="testimonial-caption ">
+                                    <div className="testimonial-top-cap">
+                                        <div className="single-team mb-30 text-center">
+                                            <div className="team-img">
+                                                <img src={slider1} alt="" />
+                                                <div className="team-caption">
+                                                    <h3>
+                                                        <a>Дэлгүүр</a>
+                                                    </h3>
+                                                    <div className="team-social">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-facebook-f"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-twitter"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fas fa-globe"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i className="fab fa-instagram"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

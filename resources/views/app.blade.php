@@ -6,7 +6,7 @@
         <title>Nice Mongolia</title>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
         <!-- import style start -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/slicknav.css"/>
         <link rel="stylesheet" href="css/flaticon.css"/>

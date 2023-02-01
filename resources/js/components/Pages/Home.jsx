@@ -163,7 +163,6 @@ function Home() {
                     </div>
                 </div>
                 <Services />
-                <Blog />
             </main>
             <Footer />
             <Modal

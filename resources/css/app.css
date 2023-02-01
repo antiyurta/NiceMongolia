@@ -2,24 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.ant-btn-primary{
+.ant-btn-primary {
     color: #fff !important;
     background-color: #1677ff !important;
 }
-.preloader .preloader-circle{
+.preloader .preloader-circle {
     border-top-color: blue !important;
 }
-.preloader .preloader-img img{
+.preloader .preloader-img img {
     max-width: 100px !important;
     border-radius: 50% !important;
 }
 .slider-height {
-    background-image: url('../img/h1_hero.jpg') !important; 
+    background-image: url("../img/h1_hero.jpg") !important;
 }
 .slider-area form.search-box .search-form button {
     width: 100%;
     height: 60px;
-    background: #1E90FF;
+    background: #1e90ff;
     font-size: 20px;
     line-height: 1;
     text-align: center;
@@ -28,7 +28,7 @@
     padding: 15px;
     border-radius: 0px;
     text-transform: uppercase;
-    font-family: "Barlow",sans-serif;
+    font-family: "Barlow", sans-serif;
     line-height: 1.2;
     line-height: 29px;
     font-size: 14px;
@@ -36,4 +36,27 @@
     letter-spacing: 0.03em;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+.categories-area .single-cat .cat-icon span {
+    text-align: -webkit-center;
+    height: 76px;
+    padding-top: 13px;
+}
+.h1-testimonial-active button.slick-arrow {
+    top: 50% !important;
+    -webkit-transform: translateY(-50%) !important;
+    -ms-transform: translateY(-50%) !important;
+    -moz-transform: translateY(-50%) !important;
+    -o-transform: translateY(-50%) !important;
+    transform: translateY(-50%) !important;
+    -webkit-transition: all 0.3s ease-in-out !important;
+    -ms-transition: all 0.3s ease-in-out !important;
+    -moz-transition: all 0.3s ease-in-out !important;
+    -o-transition: all 0.3s ease-in-out !important;
+    transition: all 0.3s ease-in-out !important;
+}
+.testimonial-padding {
+    padding-top: 80px !important;
+    padding-bottom: 0px !important;
 }
