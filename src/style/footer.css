@@ -147,3 +147,31 @@
       padding-bottom: 50px;
    }
 }
+.our-info-area {
+   background: #f9f9f9;
+}
+.our-info-area .single-info {
+   display: flex;
+   align-items: center;
+}
+.our-info-area .single-info .info-icon {
+   display: contents !important;
+   width: 40px !important;
+   height: 40px !important;
+}
+.our-info-area .single-info .info-caption {
+   padding-left: 20px;
+}
+.our-info-area .single-info .info-caption p {
+   color: #677294;
+   font-size: 16px;
+   font-weight: 400;
+   margin-bottom: 0;
+}
+.our-info-area .single-info .info-caption span {
+   color: #2c234d;
+   font-size: 20px;
+   margin-bottom: 0px;
+   display: block;
+   font-weight: 600;
+}
