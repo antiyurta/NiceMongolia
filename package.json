@@ -1,7 +1,6 @@
 {
-  "name": "chinggis_khan",
-  "proxy": "http://192.168.5.112",
-  "version": "0.1.0",
+  "name": "nice_mongolia",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
