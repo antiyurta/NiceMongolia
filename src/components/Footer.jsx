@@ -1,6 +1,6 @@
 import React from 'react';
 import '../style/footer.css';
-import logo from '../assets/header/logo.png';
+import logo from '../assets/header/NMongolia.png';
 import { Container } from 'react-bootstrap';
 function Footer() {
    return (

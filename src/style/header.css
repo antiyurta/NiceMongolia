@@ -1,5 +1,7 @@
 .header-area {
    background-color: #000c20 !important;
+   z-index: 1;
+   position: relative;
 }
 .header-top {
    border-bottom: 1px solid #2d2d2d;
@@ -39,6 +41,8 @@
 }
 .nav-link {
    font-family: 'Inter';
-   font-weight: 500;
+   font-weight: 600;
+   padding: 12px;
+   gap: 24px;
    color: white;
 }

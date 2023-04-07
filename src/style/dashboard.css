@@ -1,0 +1,11 @@
+.ant-layout .ant-layout-sider {
+   background-color: white;
+}
+.dashboardLogo {
+   height: 64px;
+   margin: 16px;
+   background: url('../assets/header/NMongolia.png');
+   background-repeat: no-repeat;
+   background-size: cover;
+   /* background-position: 'center center'; */
+}
