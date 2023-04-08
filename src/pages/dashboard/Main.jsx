@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { CarOutlined } from '@ant-design/icons';
+import {
+   CarOutlined,
+   DashboardOutlined,
+   UserOutlined,
+   SnippetsOutlined
+} from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 const { Header, Sider, Content } = Layout;
 import '../../style/dashboard.css';
@@ -9,12 +14,13 @@ function Main() {
       token: { colorBgContainer }
    } = theme.useToken();
    return (
-      <Layout hasSider>
+      <Layout hasSider theme="dark">
          <Sider
             style={{
                overflow: 'auto',
                height: '100vh',
                position: 'fixed',
+               background: '#001529',
                left: 0,
                top: 0,
                bottom: 0
@@ -22,13 +28,29 @@ function Main() {
          >
             <div className="dashboardLogo" />
             <Menu
-               theme="light"
+               theme="dark"
                mode="inline"
+               defaultSelectedKeys={['1']}
                items={[
                   {
                      key: '1',
+                     icon: <DashboardOutlined />,
+                     label: <Link to={'/dashboard'}>Хянах самбар</Link>
+                  },
+                  {
+                     key: '2',
+                     icon: <UserOutlined />,
+                     label: 'Ажилтаны үйлчилгээ'
+                  },
+                  {
+                     key: '3',
                      icon: <CarOutlined />,
-                     label: <Link to={'/dashboard/cargo'}>Ачаа</Link>
+                     label: <Link to={'/dashboard/cargo'}>Ачаа, бараа</Link>
+                  },
+                  {
+                     key: '4',
+                     icon: <SnippetsOutlined />,
+                     label: 'Тайлан тооцоо'
                   }
                ]}
             />
@@ -39,12 +61,6 @@ function Main() {
                marginLeft: 200
             }}
          >
-            <Header
-               style={{
-                  padding: 0,
-                  background: colorBgContainer
-               }}
-            />
             <Content
                style={{
                   margin: '24px 16px 0',

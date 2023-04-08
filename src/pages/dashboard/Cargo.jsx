@@ -14,10 +14,13 @@ const { Option } = Select;
 function Cargo() {
    const [changeForm] = Form.useForm();
    const [lists, setLists] = useState([]);
+   const [loading, setLoading] = useState(false);
    const [isOpenChangeModal, setIsOpenChangeModal] = useState(false);
    const [statuses, setStatuses] = useState([]);
    const [pointerPos, setPointerPos] = useState({});
+   const [places, setPlaces] = useState([]);
    const getCargoLists = async () => {
+      setLoading(true);
       const conf = {
          params: {
             body: JSON.stringify({
@@ -30,6 +33,7 @@ function Cargo() {
       if (res.status === 200 && res.data.result != null) {
          setLists(res.data.result);
       }
+      setLoading(false);
    };
    const getStatuses = async () => {
       const conf = {
@@ -49,6 +53,10 @@ function Cargo() {
       {
          title: 'Дугаар',
          dataIndex: 'id'
+      },
+      {
+         title: 'Чиглэл',
+         dataIndex: 'directionName'
       },
       {
          title: 'Илгээгчийн нэр',
@@ -107,13 +115,27 @@ function Cargo() {
       },
       {
          title: 'Үйлдэл',
-         render: () => {
+         render: (_, row) => {
             return (
                <Button
                   type="link"
                   onClick={() => {
                      getStatuses();
                      setIsOpenChangeModal(true);
+                     setPlaces([
+                        {
+                           latitude: row.receiverLocation.latitude,
+                           longitude: row.receiverLocation.longitude
+                        },
+                        {
+                           latitude: row.senderLocation.latitude,
+                           longitude: row.senderLocation.longitude
+                        }
+                     ]);
+                     setPointerPos({
+                        latitude: row.travelLocation.latitude,
+                        longitude: row.travelLocation.longitude
+                     });
                   }}
                   icon={<GlobalOutlined />}
                />
@@ -127,30 +149,34 @@ function Cargo() {
             onClick={(ev) => {
                console.log('latitide = ', ev.latLng.lat());
                console.log('longitude = ', ev.latLng.lng());
+               // addPlace(ev.latLng.lat(), ev.latLng.lng());
                setPointerPos({
-                  latitude: ev.latLng.lat(),
-                  longitude: ev.latLng.lng()
+                  lat: ev.latLng.lat(),
+                  lng: ev.latLng.lng()
                });
             }}
             defaultCenter={props.defaultCenter}
             defaultZoom={props.defaultZoom}
          >
-            <Marker
-               position={{
-                  lat: parseFloat(props.places.latitude),
-                  lng: parseFloat(props.places.longitude)
-               }}
-            />
+            <>
+               {props.places.map((marker, index) => {
+                  const position = {
+                     lat: parseFloat(marker.latitude),
+                     lng: parseFloat(marker.longitude)
+                  };
+                  return <Marker key={index} position={position} />;
+               })}
+               <Marker position={props.pointerPos} />
+            </>
          </GoogleMap>
       ))
    );
    useEffect(() => {
+      console.log(pointerPos);
       changeForm.setFieldsValue({
-         latitide: pointerPos.latitude,
-         longitude: pointerPos.longitude
+         latitide: pointerPos.lat,
+         longitude: pointerPos.lng
       });
-      //   changeForm.setFieldValue('latitide', pointerPos.latitude);
-      //   changeForm.setFieldValue('longitude', pointerPos.longitude);
    }, [pointerPos]);
    useEffect(() => {
       getCargoLists();
@@ -162,9 +188,23 @@ function Cargo() {
             bordered={false}
             className="header-solid max-h-max rounded-md"
          >
+            <div className="flex flex-wrap">
+               <div className="w-full py-1">
+                  <div className="float-left">
+                     <Button
+                        type="primary"
+                        onClick={() => getCargoLists()}
+                        loading={loading}
+                     >
+                        Сэргээх
+                     </Button>
+                  </div>
+               </div>
+            </div>
             <Table
                rowKey={'id'}
                bordered
+               loading={loading}
                columns={columns}
                dataSource={lists}
                pagination={false}
@@ -211,7 +251,8 @@ function Cargo() {
             >
                <Map
                   googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-                  places={pointerPos}
+                  places={places}
+                  pointerPos={pointerPos}
                   loadingElement={<div style={{ height: `100%` }} />}
                   containerElement={<div style={{ height: '100%' }} />}
                   mapElement={<div style={{ height: `100%` }} />}
