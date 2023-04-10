@@ -18,7 +18,6 @@ function Main() {
          <Sider
             style={{
                overflow: 'auto',
-               height: '100vh',
                position: 'fixed',
                background: '#001529',
                left: 0,
@@ -64,7 +63,7 @@ function Main() {
             <Content
                style={{
                   margin: '24px 16px 0',
-                  overflow: 'initial'
+                  overflow: 'auto'
                }}
             >
                <Outlet />

@@ -9,6 +9,7 @@ import {
    withGoogleMap,
    withScriptjs
 } from 'react-google-maps';
+import { openNofi } from '../../comman';
 const DEV_URL = process.env.REACT_APP_DEV_URL;
 const { Option } = Select;
 function Cargo() {
@@ -16,9 +17,11 @@ function Cargo() {
    const [lists, setLists] = useState([]);
    const [loading, setLoading] = useState(false);
    const [isOpenChangeModal, setIsOpenChangeModal] = useState(false);
+   const [isLoadingChange, setIsLoadingChange] = useState(false);
    const [statuses, setStatuses] = useState([]);
    const [pointerPos, setPointerPos] = useState({});
    const [places, setPlaces] = useState([]);
+   const [selectedCargoId, setSelectedCargoId] = useState(Number);
    const getCargoLists = async () => {
       setLoading(true);
       const conf = {
@@ -48,6 +51,46 @@ function Cargo() {
       if (res.status === 200 && res.data.result != null) {
          setStatuses(res.data.result);
       }
+   };
+   const onFinishUpdate = async (values) => {
+      setIsLoadingChange(true);
+      values.id = selectedCargoId;
+      values.travelLocation.cargoId = selectedCargoId;
+      const conf = {
+         params: {
+            body: JSON.stringify({
+               Command: 'SetCargoLocation',
+               Parameters: values
+            })
+         }
+      };
+      const res = await axios.get(DEV_URL + 'logistic/service/get', conf);
+      if (res.status === 200 && res.data.status === true) {
+         openNofi('success', 'Амжиллтай', 'Байрлал амжиллтай өөрчлөгдлөө');
+         setIsOpenChangeModal(false);
+         getCargoLists();
+      }
+      setIsLoadingChange(false);
+   };
+   const edit = (row) => {
+      getStatuses();
+      setSelectedCargoId(row.id);
+      changeForm.setFieldValue('statusId', row.statusId);
+      setIsOpenChangeModal(true);
+      setPlaces([
+         {
+            latitude: row.receiverLocation.latitude,
+            longitude: row.receiverLocation.longitude
+         },
+         {
+            latitude: row.senderLocation.latitude,
+            longitude: row.senderLocation.longitude
+         }
+      ]);
+      setPointerPos({
+         latitude: row.travelLocation.latitude,
+         longitude: row.travelLocation.longitude
+      });
    };
    const columns = [
       {
@@ -120,22 +163,7 @@ function Cargo() {
                <Button
                   type="link"
                   onClick={() => {
-                     getStatuses();
-                     setIsOpenChangeModal(true);
-                     setPlaces([
-                        {
-                           latitude: row.receiverLocation.latitude,
-                           longitude: row.receiverLocation.longitude
-                        },
-                        {
-                           latitude: row.senderLocation.latitude,
-                           longitude: row.senderLocation.longitude
-                        }
-                     ]);
-                     setPointerPos({
-                        latitude: row.travelLocation.latitude,
-                        longitude: row.travelLocation.longitude
-                     });
+                     edit(row);
                   }}
                   icon={<GlobalOutlined />}
                />
@@ -173,10 +201,11 @@ function Cargo() {
    );
    useEffect(() => {
       console.log(pointerPos);
-      changeForm.setFieldsValue({
-         latitide: pointerPos.lat,
+      const travelLocation = {
+         latitude: pointerPos.lat,
          longitude: pointerPos.lng
-      });
+      };
+      changeForm.setFieldValue('travelLocation', travelLocation);
    }, [pointerPos]);
    useEffect(() => {
       getCargoLists();
@@ -204,6 +233,9 @@ function Cargo() {
             <Table
                rowKey={'id'}
                bordered
+               scroll={{
+                  x: 1500
+               }}
                loading={loading}
                columns={columns}
                dataSource={lists}
@@ -213,13 +245,30 @@ function Cargo() {
          <Modal
             forceRender={true}
             title="Төлөв солих"
+            cancelText="Болих"
+            okText="Хадгалах"
+            confirmLoading={isLoadingChange}
             open={isOpenChangeModal}
             onCancel={() => setIsOpenChangeModal(false)}
+            onOk={() =>
+               changeForm.validateFields().then((values) => {
+                  onFinishUpdate(values);
+               })
+            }
          >
             <Form layout="vertical" form={changeForm}>
                <div className="flex flex-wrap">
                   <div className="w-full p-1">
-                     <Form.Item label="Төлөв" name="statuses">
+                     <Form.Item
+                        label="Төлөв"
+                        name="statusId"
+                        rules={[
+                           {
+                              required: true,
+                              message: 'Заавал'
+                           }
+                        ]}
+                     >
                         <Select>
                            {statuses?.map((status, index) => {
                               return (
@@ -232,12 +281,32 @@ function Cargo() {
                      </Form.Item>
                   </div>
                   <div className="w-1/2 p-1">
-                     <Form.Item label="latitide" name="latitide">
+                     <Form.Item
+                        shouldUpdate
+                        label="Өргөрөг"
+                        name={['travelLocation', 'latitude']}
+                        rules={[
+                           {
+                              required: true,
+                              message: 'Заавал'
+                           }
+                        ]}
+                     >
                         <Input />
                      </Form.Item>
                   </div>
                   <div className="w-1/2 p-1">
-                     <Form.Item label="longitude" name="longitude">
+                     <Form.Item
+                        shouldUpdate
+                        label="Уртраг"
+                        name={['travelLocation', 'longitude']}
+                        rules={[
+                           {
+                              required: true,
+                              message: 'Заавал'
+                           }
+                        ]}
+                     >
                         <Input />
                      </Form.Item>
                   </div>
